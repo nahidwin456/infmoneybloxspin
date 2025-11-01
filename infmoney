@@ -1,0 +1,20 @@
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+local BIG_NUMBER = "999999999999999999999999999999999999999999999999999999999999999999999999999999999999"
+
+local function updateMoneyLabels()
+	local playerGui = player:FindFirstChild("PlayerGui")
+	if not playerGui then return end
+
+	for _, obj in ipairs(playerGui:GetDescendants()) do
+		if obj.Name == "MoneyTextLabel" and obj:IsA("TextLabel") then
+			obj.Text = BIG_NUMBER
+		end
+	end
+end
+
+-- Constant loop to make sure it never changes back
+while task.wait(0.5) do
+	updateMoneyLabels()
+end
